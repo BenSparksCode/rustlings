@@ -3,7 +3,12 @@ fn array_and_vec() -> ([i32; 4], Vec<i32>) {
 
     // TODO: Create a vector called `v` which contains the exact same elements as in the array `a`.
     // Use the vector macro.
-    // let v = ???;
+
+    // Macro version would be:
+    // let v = vec!(a)
+    // but then compiler gives a type error because v has type Vec<[i32; 4]> and not the expected Vec<i32> type.
+    // So the approach below gives the correct type to make compiler happy, but does not use a macro as instructed:
+    let v = a.to_vec();
 
     (a, v)
 }
