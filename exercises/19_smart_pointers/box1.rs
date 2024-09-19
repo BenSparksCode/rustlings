@@ -1,3 +1,5 @@
+use crate::List::{Cons, Nil};
+
 // At compile time, Rust needs to know how much space a type takes up. This
 // becomes problematic for recursive types, where a value can have as part of
 // itself another value of the same type. To get around the issue, we can use a
@@ -12,18 +14,18 @@
 // TODO: Use a `Box` in the enum definition to make the code compile.
 #[derive(PartialEq, Debug)]
 enum List {
-    Cons(i32, List),
+    Cons(i32, Box<List>),
     Nil,
 }
 
 // TODO: Create an empty cons list.
 fn create_empty_list() -> List {
-    todo!()
+    Nil
 }
 
 // TODO: Create a non-empty cons list.
 fn create_non_empty_list() -> List {
-    todo!()
+    Cons(1, Box::new(Cons(2, Box::new(Nil))))
 }
 
 fn main() {
