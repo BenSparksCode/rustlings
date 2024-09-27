@@ -47,12 +47,15 @@ impl FromStr for Person {
         if s_items.len() != 2 {
             return Err(ParsePersonError::BadLen);
         } else if s_items[0].is_empty() {
-           return Err(ParsePersonError::NoName);
+            return Err(ParsePersonError::NoName);
         }
 
         match s_items[1].parse::<u8>() {
-            Ok(value) => Ok(Person{name: s_items[0].to_string(), age: value}),
-            Err(e) => Err(ParsePersonError::ParseInt(e))
+            Ok(value) => Ok(Person {
+                name: s_items[0].to_string(),
+                age: value,
+            }),
+            Err(e) => Err(ParsePersonError::ParseInt(e)),
         }
     }
 }
